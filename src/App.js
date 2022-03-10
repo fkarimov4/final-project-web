@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { initializeApp } from "firebase/app";
+import { UserContextProvider } from "./context/UserContext";
+import Login from "./scenes/Login";
+import Signup from "./scenes/Signup";
+import Home from "./scenes/Home";
+import Header from "./components/Header";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBBGPsfUWjd-Lm_2YYB021F9GFe645mRM0",
+  authDomain: "jobify-fk.firebaseapp.com",
+  projectId: "jobify-fk",
+  storageBucket: "jobify-fk.appspot.com",
+  messagingSenderId: "56042238888",
+  appId: "1:56042238888:web:c879ad1a2a8f436e68e39d",
+};
+
+initializeApp(firebaseConfig);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextProvider>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<Signup />} />
+      </Routes>
+    </UserContextProvider>
   );
 }
 
