@@ -20,7 +20,7 @@ export default function NavMenu() {
             <li>
               <Link to="/login">Login</Link>
             </li>
-            <li className="ml-8 bg-black py-2 px-4 text-white rounded-lg">
+            <li className="ml-8 bg-black font-bold py-2 px-4 text-white rounded-lg">
               <Link to="/sign-up">Sign Up</Link>
             </li>
           </>
