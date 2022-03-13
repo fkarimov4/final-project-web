@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { QuizResultsContext } from "../context/QuizResultsContext";
 import Step1 from "../components/quiz/Step1";
 import Step2 from "../components/quiz/Step2";
 import Step3 from "../components/quiz/Step3";
@@ -11,12 +13,16 @@ export default function Quiz() {
   const [experiences, setExperiences] = useState([]);
   const [salaryLowerLim, setSalaryLowerLim] = useState(0);
 
+  const { setQuizResults } = useContext(QuizResultsContext)
+
+  const navigate = useNavigate()
+
   const userInput = {
     location: locations,
     position: positions,
     technologies: ["React"],
     experience: experiences,
-    salaryLowerLim: 100000,
+    salaryLowerLim: 50000,
   };
 
   const prevStep = () => {
@@ -36,12 +42,13 @@ export default function Quiz() {
       body: JSON.stringify(userInput),
     })
       .then((response) => response.json())
-      .then()
+      .then(data => setQuizResults(data))
+      .then(() => navigate("/your-results"))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    console.log(experiences);
+    console.log(locations)
   }, [experiences]);
 
   return (

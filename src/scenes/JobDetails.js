@@ -14,7 +14,7 @@ export default function JobDetails() {
   }, []);
 
   return (
-    <section className="bg-slate-100 py-12 px-4 font-cabinet relative">
+    <section className="bg-slate-100 py-12 px-4 font-cabinet">
       {!job.logo ? (
         <h2>Loading...</h2>
       ) : (
@@ -144,10 +144,10 @@ export default function JobDetails() {
             </ul>
           </div>
           <div className="flex flex-col gap-4 fixed bottom-8 right-8 sm:bottom-20 sm:right-12">
-            <button className="flex bg-white hover:bg-red-500 hover:text-white shadow-md py-2 px-3 rounded-3xl">
+            <button className="flex bg-white hover:bg-red-500 hover:text-white active:scale-110 transition-all shadow-md py-2 px-3 rounded-3xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 hover:text-white mr-2"
+                className="h-6 w-6 mr-2"
                 fill="none"
                 viewBox="0  hov0 24 24"
                 stroke="currentColor"
@@ -161,10 +161,10 @@ export default function JobDetails() {
               </svg>
               Save
             </button>
-            <button className="flex bg-white hover:bg-green-400 shadow-md py-2 px-3 rounded-3xl">
+            <button className="flex bg-white hover:bg-green-400 shadow-md py-2 px-3 active:scale-110 transition-all rounded-3xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 hover:text-white mr-2"
+                className="h-6 w-6 mr-2"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
