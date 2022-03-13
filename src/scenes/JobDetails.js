@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function JobDetails() {
   const [job, setJob] = useState({});
@@ -14,7 +14,7 @@ export default function JobDetails() {
   }, []);
 
   return (
-    <section className="bg-slate-100 py-12 px-4 font-cabinet">
+    <section className="bg-slate-100 py-12 px-4 font-cabinet relative">
       {!job.logo ? (
         <h2>Loading...</h2>
       ) : (
@@ -106,6 +106,19 @@ export default function JobDetails() {
           </div>
           <hr className="my-6" />
           <div>
+            <h2 className="text-xl font-bold mb-4">Benefits</h2>
+            <ul>
+              {job.benefits.map((benefit) => {
+                return (
+                  <li key={benefit} className="ml-4 list-disc mb-2">
+                    {benefit}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <hr className="my-6" />
+          <div>
             <h2 className="text-xl font-bold mb-4">Requirements</h2>
             <ul>
               {job.requirements.map((requirement) => {
@@ -129,6 +142,42 @@ export default function JobDetails() {
                 );
               })}
             </ul>
+          </div>
+          <div className="flex flex-col gap-4 fixed bottom-8 right-8 sm:bottom-20 sm:right-12">
+            <button className="flex bg-white hover:bg-red-500 hover:text-white shadow-md py-2 px-3 rounded-3xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 hover:text-white mr-2"
+                fill="none"
+                viewBox="0  hov0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+              Save
+            </button>
+            <button className="flex bg-white hover:bg-green-400 shadow-md py-2 px-3 rounded-3xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 hover:text-white mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                />
+              </svg>
+              Apply
+            </button>
           </div>
         </div>
       )}
