@@ -20,7 +20,7 @@ export default function Login() {
 
 
   return (
-    <section className="max-w-md p-12 my-8 mx-auto border-2 border-black font-cabinet rounded-xl">
+    <section className="max-w-md p-12 px-4 my-8 mx-auto border-2 border-black font-cabinet rounded-xl">
       <h1 className="font-bold text-center text-3xl mb-8">Login</h1>
       <form>
         <label className="flex flex-col font-bold">

@@ -15,7 +15,7 @@ export default function RecentJobs() {
       <div className="flex flex-wrap justify-center gap-6 mx-auto">
         {recentJobs.map((job) => {
           return (
-            <figure className="bg-white rounded-xl w-96 p-8" key={job.id}>
+            <figure className="bg-white rounded-xl w-80 sm:w-96 p-8" key={job.id}>
               
               <img src={job.logo} className="h-12 w-auto mb-4" alt={job.id} />
               <p className="my-2 text-xl">{job.position}</p>
