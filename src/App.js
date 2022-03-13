@@ -5,6 +5,9 @@ import Login from "./scenes/Login";
 import Signup from "./scenes/Signup";
 import Home from "./scenes/Home";
 import Header from "./components/Header";
+import MyAccount from "./scenes/MyAccount";
+import Quiz from "./scenes/Quiz";
+import Footer from "./components/Footer";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBBGPsfUWjd-Lm_2YYB021F9GFe645mRM0",
@@ -25,7 +28,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<Signup />} />
+        <Route path="/my-account" element={<MyAccount />} />
+        <Route path="/quiz" element={<Quiz />} />
       </Routes>
+      <Footer/>
     </UserContextProvider>
   );
 }
