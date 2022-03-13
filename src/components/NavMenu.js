@@ -18,9 +18,9 @@ export default function NavMenu() {
         {!user ? (
           <>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login" className="hover:opacity-80 hover:underline hover:underline-offset-8 transition ease-in hover:ease-in duration-300">Login</Link>
             </li>
-            <li className="ml-8 bg-black font-bold py-2 px-4 text-white rounded-lg">
+            <li className="ml-8 bg-black font-bold py-2 px-4 hover:opacity-80 text-white rounded-lg">
               <Link to="/sign-up">Sign Up</Link>
             </li>
           </>
@@ -38,7 +38,7 @@ export default function NavMenu() {
             </li>
             <button
               onClick={() => logout()}
-              className="ml-8 bg-black py-2 px-4 text-white rounded-lg"
+              className="ml-8 bg-black py-2 px-4 hover:opacity-80 text-white rounded-lg"
             >
               Sign Out
             </button>

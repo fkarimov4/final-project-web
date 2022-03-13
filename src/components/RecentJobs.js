@@ -20,14 +20,14 @@ export default function RecentJobs() {
               key={job.id}
             >
               <img src={job.logo} className="h-12 w-auto mb-8" alt={job.id} />
-              <p className="mb-2 flex items-center">
+              <p className="mb-2 flex items-center text-slate-700 font-medium text-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 text-slate-300 mr-2"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={2} 
                 >
                   <path
                     strokeLinecap="round"
@@ -37,7 +37,7 @@ export default function RecentJobs() {
                 </svg>
                 {job.position}
               </p>
-              <p className="mb-2 flex items-center">
+              <p className="mb-2 flex items-center text-slate-700 font-medium text-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 text-slate-300 mr-2"
@@ -60,7 +60,7 @@ export default function RecentJobs() {
                 {job.location[0]}
               </p>
 
-              <p className="mb-8 flex items-center">
+              <p className="mb-8 flex items-center text-slate-700 font-medium text-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 text-slate-300 mr-2"
@@ -78,7 +78,7 @@ export default function RecentJobs() {
                 ${job.salaryLowerLim / 1000}–{job.salaryUpperLim / 1000}k
               </p>
               <Link
-                to="/"
+                to={`/job-details/${job.id}`}
                 className="my-8 bg-black hover:opacity-80 font-bold text-white w-full px-4 py-2 rounded-lg"
               >
                 View Job

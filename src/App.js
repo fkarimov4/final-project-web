@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import MyAccount from "./scenes/MyAccount";
 import Quiz from "./scenes/Quiz";
 import Footer from "./components/Footer";
+import JobDetails from "./scenes/JobDetails";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBBGPsfUWjd-Lm_2YYB021F9GFe645mRM0",
@@ -30,6 +31,7 @@ function App() {
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/quiz" element={<Quiz />} />
+        <Route path="/job-details/:id" element={<JobDetails />} />
       </Routes>
       <Footer/>
     </UserContextProvider>
