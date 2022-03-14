@@ -4,6 +4,8 @@ import { QuizResultsContext } from "../context/QuizResultsContext";
 import Step1 from "../components/quiz/Step1";
 import Step2 from "../components/quiz/Step2";
 import Step3 from "../components/quiz/Step3";
+import Step4 from "../components/quiz/Step4";
+import Step5 from "../components/quiz/Step5";
 
 export default function Quiz() {
   const [step, setStep] = useState(1);
@@ -11,7 +13,8 @@ export default function Quiz() {
   const [locations, setLocations] = useState([]);
   const [positions, setPositions] = useState([]);
   const [experiences, setExperiences] = useState([]);
-  const [salaryLowerLim, setSalaryLowerLim] = useState(0);
+  const [technologies, setTechnologies] = useState([]);
+  const [salaryLowerLim, setSalaryLowerLim] = useState(50000);
 
   const { setQuizResults } = useContext(QuizResultsContext);
 
@@ -20,9 +23,9 @@ export default function Quiz() {
   const userInput = {
     location: locations,
     position: positions,
-    technologies: ["React"],
+    technologies: technologies,
     experience: experiences,
-    salaryLowerLim: 50000,
+    salaryLowerLim: salaryLowerLim,
   };
 
   const prevStep = () => {
@@ -47,18 +50,19 @@ export default function Quiz() {
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    console.log(locations);
-  }, [locations]);
-
   return (
     <section className="flex flex-col bg-slate-100 w-full sm:w-2/4 p-8 mx-auto my-8 justify-center rounded-xl">
       {step === 1 && (
         <>
           <Step1 locations={locations} setLocations={setLocations} />
-          <button onClick={nextStep} className="bg-green-400 h-12 rounded-md ">
-            Next
-          </button>
+          <div className="flex gap-4 mt-8">
+            <button
+              onClick={nextStep}
+              className="bg-green-400 h-12 w-full rounded-md "
+            >
+              Next
+            </button>
+          </div>
         </>
       )}
       {step === 2 && (
@@ -88,29 +92,64 @@ export default function Quiz() {
       {step === 3 && (
         <>
           <Step3 experiences={experiences} setExperiences={setExperiences} />
-          <button
-            onClick={prevStep}
-            className="bg-white border-2 border-black h-12 rounded-md "
-          >
-            Back
-          </button>
-          <button
-            onClick={handleFormSubmit}
-            className="bg-green-400 h-12 rounded-md "
-          >
-            Submit
-          </button>
+          <div className="flex gap-4 mt-8">
+            <button
+              onClick={prevStep}
+              className="bg-white border-2 border-black w-full h-12 rounded-md "
+            >
+              Back
+            </button>
+            <button
+              onClick={nextStep}
+              className="bg-green-400 h-12 w-full rounded-md "
+            >
+              Next
+            </button>
+          </div>
         </>
       )}
       {step === 4 && (
         <>
-          <Step1
+          <Step4
+            technologies={technologies}
+            setTechnologies={setTechnologies}
+          />
+          <div className="flex gap-4 mt-8">
+            <button
+              onClick={prevStep}
+              className="bg-white border-2 border-black w-full h-12 rounded-md "
+            >
+              Back
+            </button>
+            <button
+              onClick={nextStep}
+              className="bg-green-400 h-12 w-full rounded-md "
+            >
+              Next
+            </button>
+          </div>
+        </>
+      )}
+      {step === 5 && (
+        <>
+          <Step5
             salaryLowerLim={salaryLowerLim}
             setSalaryLowerLim={setSalaryLowerLim}
           />
-          <button onClick={nextStep} className="bg-green-400 h-12 rounded-md ">
-            Next
-          </button>
+          <div className="flex gap-4 mt-8">
+            <button
+              onClick={prevStep}
+              className="bg-white border-2 border-black w-full h-12 rounded-md "
+            >
+              Back
+            </button>
+            <button
+              onClick={handleFormSubmit}
+              className="bg-green-400 h-12 w-full rounded-md "
+            >
+              Submit
+            </button>
+          </div>
         </>
       )}
     </section>
