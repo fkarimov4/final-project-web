@@ -13,9 +13,9 @@ export default function Quiz() {
   const [experiences, setExperiences] = useState([]);
   const [salaryLowerLim, setSalaryLowerLim] = useState(0);
 
-  const { setQuizResults } = useContext(QuizResultsContext)
+  const { setQuizResults } = useContext(QuizResultsContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const userInput = {
     location: locations,
@@ -42,14 +42,14 @@ export default function Quiz() {
       body: JSON.stringify(userInput),
     })
       .then((response) => response.json())
-      .then(data => setQuizResults(data))
+      .then((data) => setQuizResults(data))
       .then(() => navigate("/your-results"))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    console.log(locations)
-  }, [experiences]);
+    console.log(locations);
+  }, [locations]);
 
   return (
     <section className="flex flex-col bg-slate-100 w-full sm:w-2/4 p-8 mx-auto my-8 justify-center rounded-xl">
@@ -69,14 +69,31 @@ export default function Quiz() {
             prevStep={prevStep}
             nextStep={nextStep}
           />
-          <button onClick={nextStep} className="bg-green-400 h-12 rounded-md ">
-            Next
-          </button>
+          <div className="flex gap-4 mt-8">
+            <button
+              onClick={prevStep}
+              className="bg-white border-2 border-black w-full h-12 rounded-md "
+            >
+              Back
+            </button>
+            <button
+              onClick={nextStep}
+              className="bg-green-400 h-12 w-full rounded-md "
+            >
+              Next
+            </button>
+          </div>
         </>
       )}
       {step === 3 && (
         <>
           <Step3 experiences={experiences} setExperiences={setExperiences} />
+          <button
+            onClick={prevStep}
+            className="bg-white border-2 border-black h-12 rounded-md "
+          >
+            Back
+          </button>
           <button
             onClick={handleFormSubmit}
             className="bg-green-400 h-12 rounded-md "

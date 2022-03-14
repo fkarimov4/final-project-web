@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function JobDetails() {
   const [job, setJob] = useState({});
@@ -16,7 +16,10 @@ export default function JobDetails() {
   return (
     <section className="bg-slate-100 py-12 px-4 font-cabinet">
       {!job.logo ? (
-        <h2>Loading...</h2>
+        <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
+          <h2>Loading...</h2>
+          <img src="/assets/spinner.gif" />
+        </div>
       ) : (
         <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
           <img
