@@ -8,3 +8,25 @@
   font-weight: 100 900;
   font-style: normal;
 }
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  /* border: 2px solid black; */
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0, 0.2);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  /* border: 2px solid black; */
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0, 0.2);
+  cursor: pointer;
+}

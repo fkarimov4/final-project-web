@@ -10,7 +10,6 @@ export default function JobDetails() {
       .then((response) => response.json())
       .then((data) => setJob(data))
       .catch(alert);
-    console.log(job);
   }, []);
 
   return (
@@ -18,7 +17,7 @@ export default function JobDetails() {
       {!job.logo ? (
         <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
           <h2>Loading...</h2>
-          <img src="/assets/spinner.gif" />
+          <img src="/assets/spinner.gif" alt="Spinner indicator"/>
         </div>
       ) : (
         <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">

@@ -20,7 +20,7 @@ export default function Step3({ experiences, setExperiences }) {
             className="bg-white px-4 py-2  border-2 border-black rounded-md mb-4"
           >
             <input
-              key={choice.id}
+              // key={choice.id}
               type="checkbox"
               className="mr-4"
               value={choice.shortName}

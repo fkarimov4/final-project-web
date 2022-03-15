@@ -1,7 +1,7 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 export default function Login() {
   const { setUser } = useContext(UserContext);
@@ -13,37 +13,39 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         setUser(result.user);
-        navigate('/');
+        navigate("/");
       })
       .catch((error) => alert(error.message));
   };
 
-
   return (
-    <section className="max-w-md p-12 px-4 my-8 mx-auto border-2 border-black font-cabinet rounded-xl">
-      <h1 className="font-bold text-center text-3xl mb-8">Login</h1>
-      <form>
-        <label className="flex flex-col font-bold">
-          Email
-          <input
-            className="p-2 mb-2 border-2 border-black rounded-lg"
-            type="email"
-          />
-        </label>
-        <label className="flex flex-col font-bold">
-          Password
-          <input
-            className="p-2 mb-2 border-2 border-black rounded-lg"
-            type="password"
-          />
-        </label>
-        <button className="text-xl h-12 bg-black font-bold text-white rounded-lg p-2 w-full mt-4">
-          Sign In
-        </button>
-        <span className="block text-center my-4">or</span>
-        
-      </form>
-      <button onClick={() => loginWithGoogle()} className="flex h-12 items-center justify-center border-2 font-bold border-black text-xl rounded-lg p-2 w-full mt-4">
+    <section className="bg-slate-100 py-12 px-4 font-cabinet h-screen">
+      <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
+        <h1 className="font-bold text-center text-3xl mb-8">Login</h1>
+        <form>
+          <label className="flex flex-col font-bold">
+            Email
+            <input
+              className="p-2 mb-2 border-2 border-black rounded-lg"
+              type="email"
+            />
+          </label>
+          <label className="flex flex-col font-bold">
+            Password
+            <input
+              className="p-2 mb-2 border-2 border-black rounded-lg"
+              type="password"
+            />
+          </label>
+          <button className="text-xl h-12 bg-black font-bold text-white rounded-lg p-2 w-full mt-4">
+            Sign In
+          </button>
+          <span className="block text-center my-4">or</span>
+        </form>
+        <button
+          onClick={() => loginWithGoogle()}
+          className="flex h-12 items-center justify-center border-2 font-bold border-black text-xl rounded-lg p-2 w-full mt-4"
+        >
           <svg
             className="mr-4"
             viewBox="0 0 24 24"
@@ -72,6 +74,7 @@ export default function Login() {
           </svg>
           Sign In with Google
         </button>
+      </div>
     </section>
   );
 }

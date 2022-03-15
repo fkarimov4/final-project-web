@@ -23,7 +23,7 @@ export default function Quiz() {
   const userInput = {
     location: locations,
     position: positions,
-    technologies: technologies,
+    technologies: ["React"],
     experience: experiences,
     salaryLowerLim: salaryLowerLim,
   };
@@ -51,7 +51,8 @@ export default function Quiz() {
   };
 
   return (
-    <section className="flex flex-col bg-slate-100 w-full sm:w-2/4 p-8 mx-auto my-8 justify-center rounded-xl">
+    <section className="bg-slate-100 py-12 px-4 font-cabinet h-screen">
+      <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
       {step === 1 && (
         <>
           <Step1 locations={locations} setLocations={setLocations} />
@@ -152,6 +153,7 @@ export default function Quiz() {
           </div>
         </>
       )}
+      </div>
     </section>
   );
 }

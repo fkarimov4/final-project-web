@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { UserContextProvider } from "./context/UserContext";
 import { QuizResultsContextProvider } from "./context/QuizResultsContext";
 import Login from "./scenes/Login";
-import Signup from "./scenes/Signup";
 import Home from "./scenes/Home";
 import Header from "./components/Header";
 import MyAccount from "./scenes/MyAccount";
@@ -31,7 +30,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<Signup />} />
           <Route path="/my-account" element={<MyAccount />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
