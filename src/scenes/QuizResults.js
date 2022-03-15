@@ -7,7 +7,7 @@ export default function QuizResults() {
   return (
     <section className="bg-slate-100 py-12 px-4 font-cabinet">
       {!quizResults ? (
-        <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl text-center">
+        <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl text-center">
           <p className="text-3xl font-black">Uh-oh!</p>
           <h2>No results match your search...</h2>
         </div>

@@ -6,6 +6,9 @@ import Step2 from "../components/quiz/Step2";
 import Step3 from "../components/quiz/Step3";
 import Step4 from "../components/quiz/Step4";
 import Step5 from "../components/quiz/Step5";
+import PrevStepBtn from "../components/quiz/PrevStepBtn";
+import NextStepBtn from "../components/quiz/NextStepBtn";
+import SubmitFormBtn from "../components/quiz/SubmitFormBtn";
 
 export default function Quiz() {
   const [step, setStep] = useState(1);
@@ -23,7 +26,7 @@ export default function Quiz() {
   const userInput = {
     location: locations,
     position: positions,
-    technologies: ["React"],
+    technologies: technologies,
     experience: experiences,
     salaryLowerLim: salaryLowerLim,
   };
@@ -33,8 +36,14 @@ export default function Quiz() {
   };
 
   const nextStep = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setStep(step + 1);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log(technologies);
+  }, [technologies]);
 
   const handleFormSubmit = () => {
     fetch("https://jobify-fk.uk.r.appspot.com/jobs/filtered", {
@@ -51,108 +60,63 @@ export default function Quiz() {
   };
 
   return (
-    <section className="bg-slate-100 py-12 px-4 font-cabinet h-screen">
-      <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
-      {step === 1 && (
-        <>
-          <Step1 locations={locations} setLocations={setLocations} />
-          <div className="flex gap-4 mt-8">
-            <button
-              onClick={nextStep}
-              className="bg-green-400 h-12 w-full rounded-md "
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
-      {step === 2 && (
-        <>
-          <Step2
-            positions={positions}
-            setPositions={setPositions}
-            prevStep={prevStep}
-            nextStep={nextStep}
-          />
-          <div className="flex gap-4 mt-8">
-            <button
-              onClick={prevStep}
-              className="bg-white border-2 border-black w-full h-12 rounded-md "
-            >
-              Back
-            </button>
-            <button
-              onClick={nextStep}
-              className="bg-green-400 h-12 w-full rounded-md "
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
-      {step === 3 && (
-        <>
-          <Step3 experiences={experiences} setExperiences={setExperiences} />
-          <div className="flex gap-4 mt-8">
-            <button
-              onClick={prevStep}
-              className="bg-white border-2 border-black w-full h-12 rounded-md "
-            >
-              Back
-            </button>
-            <button
-              onClick={nextStep}
-              className="bg-green-400 h-12 w-full rounded-md "
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
-      {step === 4 && (
-        <>
-          <Step4
-            technologies={technologies}
-            setTechnologies={setTechnologies}
-          />
-          <div className="flex gap-4 mt-8">
-            <button
-              onClick={prevStep}
-              className="bg-white border-2 border-black w-full h-12 rounded-md "
-            >
-              Back
-            </button>
-            <button
-              onClick={nextStep}
-              className="bg-green-400 h-12 w-full rounded-md "
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
-      {step === 5 && (
-        <>
-          <Step5
-            salaryLowerLim={salaryLowerLim}
-            setSalaryLowerLim={setSalaryLowerLim}
-          />
-          <div className="flex gap-4 mt-8">
-            <button
-              onClick={prevStep}
-              className="bg-white border-2 border-black w-full h-12 rounded-md "
-            >
-              Back
-            </button>
-            <button
-              onClick={handleFormSubmit}
-              className="bg-green-400 h-12 w-full rounded-md "
-            >
-              Submit
-            </button>
-          </div>
-        </>
-      )}
+    <section className="bg-slate-100 py-12 px-4 font-cabinet min-h-screen">
+      <div className="bg-white sm:max-w-2xl mx-auto p-6 sm:p-10 rounded-xl">
+        {step === 1 && (
+          <>
+            <Step1 locations={locations} setLocations={setLocations} />
+            <div className="flex gap-4 mt-8">
+              <NextStepBtn nextStep={nextStep} />
+            </div>
+          </>
+        )}
+        {step === 2 && (
+          <>
+            <Step2
+              positions={positions}
+              setPositions={setPositions}
+              prevStep={prevStep}
+              nextStep={nextStep}
+            />
+            <div className="flex gap-4 mt-8">
+              <PrevStepBtn prevStep={prevStep} />
+              <NextStepBtn nextStep={nextStep} />
+            </div>
+          </>
+        )}
+        {step === 3 && (
+          <>
+            <Step3 experiences={experiences} setExperiences={setExperiences} />
+            <div className="flex gap-4 mt-8">
+              <PrevStepBtn prevStep={prevStep} />
+              <NextStepBtn nextStep={nextStep} />
+            </div>
+          </>
+        )}
+        {step === 4 && (
+          <>
+            <Step4
+              technologies={technologies}
+              setTechnologies={setTechnologies}
+            />
+            <div className="flex gap-4 mt-8">
+              <PrevStepBtn prevStep={prevStep} />
+              <NextStepBtn nextStep={nextStep} />
+            </div>
+          </>
+        )}
+        {step === 5 && (
+          <>
+            <Step5
+              salaryLowerLim={salaryLowerLim}
+              setSalaryLowerLim={setSalaryLowerLim}
+            />
+            <div className="flex gap-4 mt-8">
+              <PrevStepBtn prevStep={prevStep} />
+              <SubmitFormBtn handleFormSubmit={handleFormSubmit} />
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

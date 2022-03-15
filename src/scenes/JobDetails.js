@@ -15,12 +15,12 @@ export default function JobDetails() {
   return (
     <section className="bg-slate-100 py-12 px-4 font-cabinet">
       {!job.logo ? (
-        <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
+        <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl">
           <h2>Loading...</h2>
           <img src="/assets/spinner.gif" alt="Spinner indicator"/>
         </div>
       ) : (
-        <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
+        <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl">
           <img
             src={job.logo}
             className="h-16 w-auto mb-12"

@@ -19,8 +19,8 @@ export default function Login() {
   };
 
   return (
-    <section className="bg-slate-100 py-12 px-4 font-cabinet h-screen">
-      <div className="bg-white sm:max-w-2xl mx-auto p-8 rounded-xl">
+    <section className="bg-slate-100 py-12 px-4 font-cabinet min-h-screen">
+      <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl">
         <h1 className="font-bold text-center text-3xl mb-8">Login</h1>
         <form>
           <label className="flex flex-col font-bold">

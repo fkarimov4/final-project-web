@@ -31,7 +31,7 @@ export default function NavMenu() {
                 <img
                   className="h-8 w-8 rounded-full mr-2"
                   src={user.photoURL}
-                  alt={`Avatar of ${user.displayName}`}
+                  alt={`User avatar for ${user.displayName}`}
                 />
                 My Account
               </Link>
