@@ -32,6 +32,7 @@ export default function Quiz() {
   };
 
   const prevStep = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setStep(step - 1);
   };
 
@@ -39,11 +40,6 @@ export default function Quiz() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setStep(step + 1);
   };
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    console.log(technologies);
-  }, [technologies]);
 
   const handleFormSubmit = () => {
     fetch("https://jobify-fk.uk.r.appspot.com/jobs/filtered", {

@@ -5,11 +5,28 @@ import { QuizResultsContext } from "../context/QuizResultsContext";
 export default function QuizResults() {
   const { quizResults } = useContext(QuizResultsContext);
   return (
-    <section className="bg-slate-100 py-12 px-4 font-cabinet">
-      {!quizResults ? (
-        <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl text-center">
-          <p className="text-3xl font-black">Uh-oh!</p>
-          <h2>No results match your search...</h2>
+    <section className="bg-slate-100 py-12 px-4 font-cabinet h-screen">
+      {!quizResults.length ? (
+        <div className="flex flex-col justify-center items-center gap-10 bg-white sm:max-w-2xl mx-auto p-10 rounded-xl text-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-16 w-16 text-slate-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <p className="text-5xl font-black">Uh-oh!</p>
+          <p className="text-2xl">It looks like there are no results that match... Please refine your search!</p>
+          <Link to="/quiz">
+            <button>Search Again</button>
+          </Link>
         </div>
       ) : (
         <div className="flex flex-wrap justify-center gap-6 mx-auto">

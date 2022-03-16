@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 export default function Login() {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const auth = getAuth();
@@ -13,7 +13,13 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         setUser(result.user);
-        navigate("/");
+        fetch('http://localhost:3000/users/add', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({userId: result.user.uid})
+        })
       })
       .catch((error) => alert(error.message));
   };
