@@ -20,6 +20,8 @@ export default function Login() {
           },
           body: JSON.stringify({userId: result.user.uid})
         })
+        localStorage.setItem("user", result.user.uid)
+        navigate('/quiz')
       })
       .catch((error) => alert(error.message));
   };

@@ -9,6 +9,7 @@ export default function NavMenu() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const logout = () => {
+    localStorage.removeItem("displayName")
     signOut(auth).then(() => navigate("/"));
   };
 

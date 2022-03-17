@@ -1,23 +1,58 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import SaveBtn from "../components/SaveBtn";
+import ApplyBtn from "../components/ApplyBtn";
 
 export default function JobDetails() {
   const [job, setJob] = useState({});
+  const [userData, setUserData] = useState([]);
   const params = useParams();
 
+  const buttonText = userData.includes(job.id) ? "Saved" : "Save";
+
   useEffect(() => {
-    fetch(`https://jobify-fk.uk.r.appspot.com/jobs/${params.id}`)
-      .then((response) => response.json())
+    fetch(`http://localhost:3000/users/${localStorage.user}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData(data.savedJobs);
+      })
+      .catch(alert);
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/jobs/${params.id}`)
+      .then((res) => res.json())
       .then((data) => setJob(data))
       .catch(alert);
   }, []);
+
+  const saveJob = () => {
+    userData.push(job.id);
+    fetch(`http://localhost:3000/users/${localStorage.user}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ savedJobs: userData }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        fetch(`http://localhost:3000/users/${localStorage.user}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setUserData(data.savedJobs);
+          })
+          .catch(alert);
+      })
+      .catch(alert);
+  };
 
   return (
     <section className="bg-slate-100 py-12 px-4 font-cabinet">
       {!job.logo ? (
         <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl">
           <h2>Loading...</h2>
-          <img src="/assets/spinner.gif" alt="Spinner indicator"/>
+          <img src="/assets/spinner.gif" alt="Spinner indicator" />
         </div>
       ) : (
         <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl">
@@ -146,40 +181,13 @@ export default function JobDetails() {
             </ul>
           </div>
           <div className="flex flex-col gap-4 fixed bottom-8 right-8 sm:bottom-20 sm:right-12">
-            <button className="flex bg-white hover:bg-red-500 hover:text-white active:scale-110 transition-all shadow-md py-2 px-3 rounded-3xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2"
-                fill="none"
-                viewBox="0  hov0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-              Save
-            </button>
-            <button className="flex bg-white hover:bg-green-400 shadow-md py-2 px-3 active:scale-110 transition-all rounded-3xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                />
-              </svg>
-              Apply
-            </button>
+            <SaveBtn
+              buttonText={buttonText}
+              job={job}
+              userData={userData}
+              saveJob={saveJob}
+            />
+            <ApplyBtn />
           </div>
         </div>
       )}
