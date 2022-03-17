@@ -4,9 +4,10 @@ const cities = [
   { id: 3, name: "Chicago" },
   { id: 4, name: "Denver" },
   { id: 5, name: "Los Angeles" },
-  { id: 6, name: "New York" },
-  { id: 7, name: "San Francisco Bay Area" },
-  { id: 8, name: "Remote (within the US)" },
+  { id: 6, name: "Miami" },
+  { id: 7, name: "New York" },
+  { id: 8, name: "San Francisco Bay Area" },
+  { id: 9, name: "Remote (within the US)" },
 ];
 
 export default function Step1({ locations, setLocations }) {

@@ -6,7 +6,7 @@ export default function MyAccountMenu() {
   return (
     <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <Menu.Button className="inline-flex justify-center w-full px-4 py-2 font-medium rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             My Account
             <ChevronDownIcon
               className="w-5 h-5 ml-2 -mr-1 text-black"
@@ -29,7 +29,7 @@ export default function MyAccountMenu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active ? 'bg-green-400 text-white' : 'text-gray-900'
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -43,29 +43,7 @@ export default function MyAccountMenu() {
                         aria-hidden="true"
                       />
                     )}
-                    Edit
-                  </button>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <DuplicateActiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <DuplicateInactiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Duplicate
+                    Profile
                   </button>
                 )}
               </Menu.Item>
@@ -75,63 +53,17 @@ export default function MyAccountMenu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <ArchiveActiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <ArchiveInactiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Archive
-                  </button>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <MoveActiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <MoveInactiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Move
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
-            <div className="px-1 py-1">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active ? 'bg-green-400 text-white' : 'text-gray-900'
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     {active ? (
                       <DeleteActiveIcon
-                        className="w-5 h-5 mr-2 text-violet-400"
+                        className="w-5 h-5 mr-2 text-green-400"
                         aria-hidden="true"
                       />
                     ) : (
                       <DeleteInactiveIcon
-                        className="w-5 h-5 mr-2 text-violet-400"
+                        className="w-5 h-5 mr-2 text-green-400"
                         aria-hidden="true"
                       />
                     )}

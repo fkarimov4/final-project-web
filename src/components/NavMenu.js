@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-// import MyAccountMenu from "./MyAccountMenu";
 
 export default function NavMenu() {
   const auth = getAuth();
@@ -37,12 +36,12 @@ export default function NavMenu() {
                 My Account
               </Link>
             </li>
-            <button
+            {/* <button
               onClick={() => logout()}
               className="ml-8 bg-black py-2 px-4 hover:opacity-80 text-white rounded-lg"
             >
               Sign Out
-            </button>
+            </button> */}
           </ul>
         )}
       </ul>

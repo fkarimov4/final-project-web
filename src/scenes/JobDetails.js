@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SaveBtn from "../components/SaveBtn";
-import ApplyBtn from "../components/ApplyBtn";
 
 export default function JobDetails() {
   const [job, setJob] = useState({});
@@ -11,7 +10,7 @@ export default function JobDetails() {
   const buttonText = userData.includes(job.id) ? "Saved" : "Save";
 
   useEffect(() => {
-    fetch(`http://localhost:3000/users/${localStorage.user}`)
+    fetch(`https://jobify-fk.uk.r.appspot.com/users/${localStorage.user}`)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data.savedJobs);
@@ -20,7 +19,7 @@ export default function JobDetails() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/jobs/${params.id}`)
+    fetch(`https://jobify-fk.uk.r.appspot.com/jobs/${params.id}`)
       .then((res) => res.json())
       .then((data) => setJob(data))
       .catch(alert);
@@ -35,7 +34,7 @@ export default function JobDetails() {
       setUserData([...userData]);
     }
 
-    fetch(`http://localhost:3000/users/${localStorage.user}`, {
+    fetch(`https://jobify-fk.uk.r.appspot.com/users/${localStorage.user}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +43,7 @@ export default function JobDetails() {
     })
       .then((res) => res.json())
       .then(() => {
-        fetch(`http://localhost:3000/users/${localStorage.user}`)
+        fetch(`https://jobify-fk.uk.r.appspot.com/users/${localStorage.user}`)
           .then((res) => res.json())
           .then((data) => {
             setUserData(data.savedJobs);

@@ -13,15 +13,15 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         setUser(result.user);
-        fetch('http://localhost:3000/users/add', {
+        fetch("https://jobify-fk.uk.r.appspot.com/users/add", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({userId: result.user.uid})
-        })
-        localStorage.setItem("user", result.user.uid)
-        navigate('/quiz')
+          body: JSON.stringify({ userId: result.user.uid }),
+        });
+        localStorage.setItem("user", result.user.uid);
+        navigate("/quiz");
       })
       .catch((error) => alert(error.message));
   };

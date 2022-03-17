@@ -1,15 +1,21 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import SaveBtn from "../components/SaveBtn";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 import { UserContext } from "../context/UserContext";
 
 export default function MyAccount() {
   const { user } = useContext(UserContext);
+  const auth = getAuth();
+  const navigate = useNavigate();
   const [userJobs, setUserJobs] = useState([]);
   const [jobList, setJobList] = useState([]);
+  const logout = () => {
+    signOut(auth).then(navigate("/"));
+    localStorage.clear();
+  };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/users/${localStorage.user}`)
+    fetch(`https://jobify-fk.uk.r.appspot.com/users/${user.uid}`)
       .then((res) => res.json())
       .then((data) => setUserJobs(data.savedJobs))
       .catch(alert);
@@ -17,7 +23,7 @@ export default function MyAccount() {
 
   useEffect(() => {
     for (let i = 0; i < userJobs.length; i++) {
-      fetch(`http://localhost:3000/jobs/${userJobs[i]}`)
+      fetch(`https://jobify-fk.uk.r.appspot.com/jobs/${userJobs[i]}`)
         .then((res) => res.json())
         .then((data) => {
           jobList.push(data);
@@ -30,27 +36,37 @@ export default function MyAccount() {
   return (
     <section className="bg-slate-100 py-12 px-4 font-cabinet min-h-screen">
       <div className="sm:max-w-full mx-auto p-10 rounded-xl">
-        <div className="flex items-center justify-between">
-          <h1 className="text-4xl font-extrabold">My Account</h1>
-          <div className="flex items-center">
-            <img
-              className="h-16 w-16 rounded-full mr-4"
-              src={user.photoURL}
-              alt={`User avatar for ${user.displayName}`}
-            />
+        <div className="flex flex-col">
+          <h1 className="text-4xl font-extrabold mb-8">My Account</h1>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center">
+              <img
+                className="h-16 w-16 rounded-full mr-4"
+                src={user.photoURL}
+                alt={`User avatar for ${user.displayName}`}
+              />
+              <div>
+                <p className="text-xl font-bold">{user.displayName}</p>
+                <button
+                  onClick={() => logout()}
+                  className="underline hover:opacity-80"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <hr className="my-6" />
-        <p className="text-3xl font-bold mb-4">Saved Jobs</p>
+        <p className="text-3xl font-bold mb-4">Saved Jobs ({jobList.length})</p>
         <div className="flex flex-wrap justify-start gap-4 mx-auto">
           {jobList.map((job) => {
             return (
-                <figure
-                  className="bg-white rounded-xl w-80 sm:w-96 p-8 border border-slate-100"
-                  key={job.id}
-                  
-                >
-                  <img src={job.logo} className="h-8 w-auto mb-8" alt={job.id} />
+              <figure
+                className="bg-white rounded-xl w-80 sm:w-96 p-8 border border-slate-100"
+                key={job.id}
+              >
+                <img src={job.logo} className="h-8 w-auto mb-8" alt={job.id} />
                 <p className="mb-2 flex items-center text-slate-700 font-medium text-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +108,7 @@ export default function MyAccount() {
                 >
                   View Job
                 </Link>
-                </figure>
+              </figure>
             );
           })}
         </div>

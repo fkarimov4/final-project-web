@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 export default function Main() {
   const [jobList, setJobList] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/jobs")
+    fetch("https://jobify-fk.uk.r.appspot.com/jobs")
       .then((response) => response.json())
       .then((data) => setJobList(data))
       .catch((err) => console.error(err));
