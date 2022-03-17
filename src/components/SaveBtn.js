@@ -1,7 +1,7 @@
 export default function SaveBtn({ job, saveJob, userData, buttonText }) {
   return (
     <button
-      className={userData.includes(job.id) ? "flex bg-red-500 text-white hover:opacity-90 active:scale-110 transition-all shadow-md py-2 px-3 rounded-3xl" : "flex bg-white hover:bg-red-500 hover:text-white active:scale-110 transition-all shadow-md py-2 px-3 rounded-3xl"}
+      className={userData.includes(job.id) ? "flex bg-red-500 text-white hover:opacity-90 active:scale-110 transition-all shadow-md py-2 pl-3 pr-4 rounded-3xl" : "flex bg-white hover:bg-red-500 hover:text-white active:scale-110 transition-all shadow-md py-2 pl-3 pr-4 rounded-3xl"}
       onClick={saveJob}
     >
       <svg

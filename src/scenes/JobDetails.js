@@ -27,7 +27,14 @@ export default function JobDetails() {
   }, []);
 
   const saveJob = () => {
-    userData.push(job.id);
+    if (userData.includes(job.id)) {
+      userData.splice(userData.indexOf(job.id), 1);
+      setUserData([...userData]);
+    } else {
+      userData.push(job.id);
+      setUserData([...userData]);
+    }
+
     fetch(`http://localhost:3000/users/${localStorage.user}`, {
       method: "PATCH",
       headers: {
@@ -187,7 +194,7 @@ export default function JobDetails() {
               userData={userData}
               saveJob={saveJob}
             />
-            <ApplyBtn />
+            {/* <ApplyBtn /> */}
           </div>
         </div>
       )}
