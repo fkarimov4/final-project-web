@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import SaveBtn from "../components/SaveBtn";
+import { UserContext } from "../context/UserContext";
 
 export default function JobDetails() {
   const [job, setJob] = useState({});
   const [userData, setUserData] = useState([]);
+  const { user } = useContext(UserContext);
   const params = useParams();
 
   const buttonText = userData.includes(job.id) ? "Saved" : "Save";
@@ -37,6 +39,7 @@ export default function JobDetails() {
     fetch(`https://jobify-fk.uk.r.appspot.com/users/${localStorage.user}`, {
       method: "PATCH",
       headers: {
+        "Authorization": user.accessToken,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ savedJobs: userData }),

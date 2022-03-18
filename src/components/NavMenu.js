@@ -8,7 +8,7 @@ export default function NavMenu() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const logout = () => {
-    localStorage.removeItem("displayName")
+    localStorage.removeItem("displayName");
     signOut(auth).then(() => navigate("/"));
   };
 
@@ -16,14 +16,12 @@ export default function NavMenu() {
     <nav className="nav-menu flex items-center ml-auto">
       <ul className="flex items-center ml-auto">
         {!user ? (
-          <>
-            <li>
-              <Link to="/login" className="hover:opacity-80 hover:underline hover:underline-offset-8 transition ease-in hover:ease-in duration-300">Login</Link>
-            </li>
-            <li className="ml-8 bg-black font-bold py-2 px-4 hover:opacity-80 text-white rounded-lg">
-              <Link to="/sign-up">Sign Up</Link>
-            </li>
-          </>
+          <Link
+            to="/login"
+            className="hover:opacity-80 hover:underline hover:underline-offset-8 transition ease-in hover:ease-in duration-300"
+          >
+            Login
+          </Link>
         ) : (
           <ul className="nav-menu flex items-center ml-auto">
             <li>
@@ -33,15 +31,11 @@ export default function NavMenu() {
                   src={user.photoURL}
                   alt={`User avatar for ${user.displayName}`}
                 />
-                My Account
+                <span className="hover:opacity-80 hover:underline hover:underline-offset-8 transition ease-in hover:ease-in duration-300">
+                  My Account
+                </span>
               </Link>
             </li>
-            {/* <button
-              onClick={() => logout()}
-              className="ml-8 bg-black py-2 px-4 hover:opacity-80 text-white rounded-lg"
-            >
-              Sign Out
-            </button> */}
           </ul>
         )}
       </ul>

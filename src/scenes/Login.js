@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 export default function Login() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const auth = getAuth();
@@ -16,6 +16,7 @@ export default function Login() {
         fetch("https://jobify-fk.uk.r.appspot.com/users/add", {
           method: "POST",
           headers: {
+            "Authorization": result.user.accessToken,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ userId: result.user.uid }),
@@ -30,26 +31,7 @@ export default function Login() {
     <section className="bg-slate-100 py-12 px-4 font-cabinet min-h-screen">
       <div className="bg-white sm:max-w-2xl mx-auto p-10 rounded-xl">
         <h1 className="font-bold text-center text-3xl mb-8">Login</h1>
-        <form>
-          <label className="flex flex-col font-bold">
-            Email
-            <input
-              className="p-2 mb-2 border-2 border-black rounded-lg"
-              type="email"
-            />
-          </label>
-          <label className="flex flex-col font-bold">
-            Password
-            <input
-              className="p-2 mb-2 border-2 border-black rounded-lg"
-              type="password"
-            />
-          </label>
-          <button className="text-xl h-12 bg-black font-bold text-white rounded-lg p-2 w-full mt-4">
-            Sign In
-          </button>
-          <span className="block text-center my-4">or</span>
-        </form>
+        <p className="text-center text-lg">Please sign in below to get started.</p>
         <button
           onClick={() => loginWithGoogle()}
           className="flex h-12 items-center justify-center border-2 font-bold border-black text-xl rounded-lg p-2 w-full mt-4"
