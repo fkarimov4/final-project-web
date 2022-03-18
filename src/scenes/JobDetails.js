@@ -51,7 +51,6 @@ export default function JobDetails() {
           .then((data) => {
             setUserData(data.savedJobs);
           })
-          .catch(alert);
       })
       .catch(alert);
   };

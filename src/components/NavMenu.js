@@ -1,16 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 export default function NavMenu() {
-  const auth = getAuth();
-  const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const logout = () => {
-    localStorage.removeItem("displayName");
-    signOut(auth).then(() => navigate("/"));
-  };
 
   return (
     <nav className="nav-menu flex items-center ml-auto">
