@@ -74,6 +74,30 @@ export default function MyAccount() {
         <hr className="my-6" />
         <p className="text-3xl font-bold mb-4">Saved Jobs ({jobList.length})</p>
         <div className="flex flex-wrap justify-start gap-4 mx-auto">
+          {jobList.length === 0 && (
+            <div className="flex flex-col gap-6">
+              <p>You don't have any jobs saved.</p>
+              <Link to="/quiz">
+                <button className="flex items-center font-bold hover:opacity-80 bg-black py-2 px-4 text-white rounded-lg active:scale-110 transition-all">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                  Search Jobs
+                </button>
+              </Link>
+            </div>
+          )}
           {jobList.map((job) => {
             return (
               <figure

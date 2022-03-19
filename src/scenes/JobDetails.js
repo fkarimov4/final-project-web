@@ -12,12 +12,14 @@ export default function JobDetails() {
   const buttonText = userData.includes(job.id) ? "Saved" : "Save";
 
   useEffect(() => {
-    fetch(`https://jobify-fk.uk.r.appspot.com/users/${localStorage.user}`)
+    if(user) {
+      fetch(`https://jobify-fk.uk.r.appspot.com/users/${localStorage.user}`)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data.savedJobs);
       })
       .catch(alert);
+    }
   }, []);
 
   useEffect(() => {
