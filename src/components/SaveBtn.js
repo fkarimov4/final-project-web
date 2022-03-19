@@ -1,8 +1,19 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+
 export default function SaveBtn({ job, saveJob, userData, buttonText }) {
+  const { user } = useContext(UserContext)
+  const navigate = useNavigate()
+
+  const navigateNotLoggedInUser = () => {
+    navigate(`/login?${job.id}`)
+  }
+  
   return (
     <button
       className={userData.includes(job.id) ? "flex bg-red-500 text-white hover:opacity-90 active:scale-110 transition-all shadow-md py-2 pl-3 pr-4 rounded-3xl" : "flex bg-white hover:bg-red-500 hover:text-white active:scale-110 transition-all shadow-md py-2 pl-3 pr-4 rounded-3xl"}
-      onClick={saveJob}
+      onClick={!user ? navigateNotLoggedInUser : saveJob}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

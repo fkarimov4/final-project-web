@@ -1,11 +1,14 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 export default function Login() {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const params = useLocation();
+
+  const jobFromParams = params.search.substring(1);
 
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
@@ -16,13 +19,17 @@ export default function Login() {
         fetch("https://jobify-fk.uk.r.appspot.com/users/add", {
           method: "POST",
           headers: {
-            "Authorization": result.user.accessToken,
+            Authorization: result.user.accessToken,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ userId: result.user.uid }),
         });
         localStorage.setItem("user", result.user.uid);
-        navigate("/quiz");
+        if (jobFromParams.length > 0) {
+          navigate(`/job-details/${jobFromParams}`);
+        } else {
+          navigate("/quiz");
+        }
       })
       .catch((error) => alert(error.message));
   };
@@ -30,8 +37,12 @@ export default function Login() {
   return (
     <section className="bg-slate-100 py-12 px-4 font-cabinet min-h-screen">
       <div className="bg-white sm:max-w-xl mx-auto p-10 rounded-xl">
-        <h1 className="text-4xl text-center font-extrabold mb-8">Welcome to Jobify</h1>
-        <p className="text-center text-2xl mb-8">Please sign in below to get started.</p>
+        <h1 className="text-4xl text-center font-extrabold mb-8">
+          Welcome to Jobify
+        </h1>
+        <p className="text-center text-2xl mb-8">
+          Please sign in below to get started.
+        </p>
         <button
           onClick={() => loginWithGoogle()}
           className="flex h-12 items-center justify-center border-2 font-bold border-black text-xl rounded-lg p-2 w-full sm:w-1/2  mt-4 mx-auto"
