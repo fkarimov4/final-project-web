@@ -8,10 +8,10 @@ export default function Hero() {
     <section className="h-screen-1/2  bg-slate-100 px-8 flex flex-col sm:flex-col md:flex-row">
       <div className="flex flex-col mt-8 justify-center">
         <div className="font-cabinet text-4xl md:text-5xl lg:text-6xl font-extrabold my-2">
-          Find jobs at the best startups
+          One place for the best startups jobs
         </div>
         <div className="font-cabinet text-2xl font-medium my-2">
-          Search for jobs that resonate with you and apply now.
+          Find jobs that resonate with you.
         </div>
         {}
 

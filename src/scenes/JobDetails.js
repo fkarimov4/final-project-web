@@ -109,7 +109,7 @@ export default function JobDetails() {
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-              {job.location}
+              {job.location.length === 1 ? job.location : (`${job.location[0]} + ${job.location.length-1} more`)}
             </p>
 
             <p className="mb-2 sm:mb-0 flex items-center text-slate-700 font-medium text-lg">

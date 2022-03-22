@@ -22,7 +22,7 @@ export default function RecentJobs() {
                 className="bg-white rounded-xl w-80 sm:w-96 p-8"
                 key={job.id}
               >
-                <img src={job.logo} className="h-12 w-auto mb-8" alt={job.id} />
+                <img src={job.logo} className="h-12 w-auto mb-8" alt={`${job.company} logo`} />
                 <p className="mb-2 flex items-center text-slate-700 font-medium text-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ export default function RecentJobs() {
                       d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
-                  {job.location[0]}
+                  {job.location.length === 1 ? job.location : (`${job.location[0]} + ${job.location.length-1} more`)}
                 </p>
 
                 <p className="mb-8 flex items-center text-slate-700 font-medium text-lg">
