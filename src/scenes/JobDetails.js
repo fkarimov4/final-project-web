@@ -197,7 +197,6 @@ export default function JobDetails() {
               userData={userData}
               saveJob={saveJob}
             />
-            {/* <ApplyBtn /> */}
           </div>
         </div>
       )}
