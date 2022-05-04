@@ -29,7 +29,6 @@ export default function MyAccount() {
           jobList.push(data);
           setJobList([...jobList]);
         })
-        .then(() => console.log(jobList));
     }
   }, [userJobs]);
 
